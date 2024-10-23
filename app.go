@@ -43,7 +43,7 @@ func (a *App) Greet(name string) string {
 	return fmt.Sprintf("Hello %s, It's show time!", name)
 }
 
-func (a *App) StartInterview(company string) string {
+func (a *App) StartInterview(company string) Questions {
 	var questionSets Questions
 	yamlFile, err := os.ReadFile("./data/company.yaml")
 	if err != nil {
@@ -54,5 +54,6 @@ func (a *App) StartInterview(company string) string {
 		panic(err)
 	}
 	fmt.Println("questionSets is :", questionSets)
-	return fmt.Sprintf("yml file is : %s", questionSets)
+	// return fmt.Sprintf("yml file is : %s", questionSets)
+	return questionSets
 }

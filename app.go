@@ -6,6 +6,7 @@ import (
 	"io/fs"
 	"os"
 
+	wailsRuntime "github.com/wailsapp/wails/v2/pkg/runtime"
 	"gopkg.in/yaml.v3"
 )
 
@@ -42,6 +43,7 @@ func NewApp() *App {
 // so we can call the runtime methods
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
+	wailsRuntime.EventsOn(a.ctx, "writeYaml", a.WriteFile)
 }
 
 // Greet returns a greeting for the given name
@@ -78,4 +80,8 @@ func (a *App) ReadAllfiles() []File {
 		result = append(result, fileData)
 	}
 	return result
+}
+
+func (a *App) WriteFile(data ...interface{}) {
+	fmt.Println("data is :", data)
 }

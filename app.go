@@ -27,6 +27,11 @@ type Sample struct {
 	SampleText string `yaml:"sample"`
 }
 
+type File struct {
+	RelativePath string
+	Name         string
+}
+
 // NewApp creates a new App application struct
 func NewApp() *App {
 	return &App{}
@@ -56,4 +61,20 @@ func (a *App) StartInterview(company string) Questions {
 	fmt.Println("questionSets is :", questionSets)
 	// return fmt.Sprintf("yml file is : %s", questionSets)
 	return questionSets
+}
+
+func (a *App) ReadAllfiles() []File {
+	files, err := os.ReadDir("./*.yaml")
+	if err != nil {
+		panic(err)
+	}
+	var result []File
+	var fileData File
+	for _, file := range files {
+		fmt.Println(file.Name(), file.IsDir())
+		fileData.Name = file.Name()
+		fileData.RelativePath = "/" + file.Name() + ".yaml"
+		result = append(result, fileData)
+	}
+	return result
 }

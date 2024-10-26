@@ -49,7 +49,7 @@ func (a *App) Greet(name string) string {
 	return fmt.Sprintf("Hello %s, It's show time!", name)
 }
 
-func (a *App) StartInterview(company string) Questions {
+func (a *App) ReadQuestionFile(company string) Questions {
 	var questionSets Questions
 	yamlFile, err := os.ReadFile("./data/company.yaml")
 	if err != nil {

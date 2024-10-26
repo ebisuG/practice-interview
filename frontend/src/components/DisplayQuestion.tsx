@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { main } from "../../wailsjs/go/models"
-import { StartInterview } from '../../wailsjs/go/main/App';
+import { ReadQuestionFile } from '../../wailsjs/go/main/App';
 
 function DisplayQuestion() {
     let shouldUpdate = true
@@ -11,7 +11,7 @@ function DisplayQuestion() {
     // const updateQuestions = (yml: main.Questions) => setAllQuestions(yml)
 
     useEffect(() => {
-        StartInterview("").then((result) => {
+        ReadQuestionFile("").then((result) => {
             const data = getInterviewQuestions(result)
             setInterviewQuestion(data)
         })

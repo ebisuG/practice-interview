@@ -6,4 +6,4 @@ export function Greet(arg1:string):Promise<string>;
 
 export function ReadAllfiles():Promise<Array<main.File>>;
 
-export function StartInterview(arg1:string):Promise<main.Questions>;
+export function ReadQuestionFile(arg1:string):Promise<main.Questions>;

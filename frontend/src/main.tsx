@@ -4,7 +4,6 @@ import './style.css'
 import Top from './Top'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Interview from './pages/Interview'
-import Edit from './pages/Edit'
 import Finish from './pages/Finish'
 
 const container = document.getElementById('root')
@@ -19,10 +18,6 @@ const router = createBrowserRouter([
     {
         path: "/interview",
         element: <Interview />,
-    },
-    {
-        path: "/edit",
-        element: <Edit />,
     },
     {
         path: "/finish",

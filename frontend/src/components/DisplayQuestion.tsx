@@ -3,12 +3,8 @@ import { main } from "../../wailsjs/go/models"
 import { ReadQuestionFile } from '../../wailsjs/go/main/App';
 
 function DisplayQuestion() {
-    let shouldUpdate = true
-    // const [allQuestions, setAllQuestions] = useState<main.Questions | null>(null)
-    // const [question, setQuestion] = useState<string>()
     const [interviewQuestion, setInterviewQuestion] = useState<string[]>([])
     const [interviewQuestionIndex, setInterviewQuestionIndex] = useState<number>(0)
-    // const updateQuestions = (yml: main.Questions) => setAllQuestions(yml)
 
     useEffect(() => {
         ReadQuestionFile("").then((result) => {
@@ -34,7 +30,6 @@ function DisplayQuestion() {
         result.push(...(q.Stages["Early"] as string[]))
         result.push(...(q.Stages["Middle"].sort((a, b) => 0.5 - Math.random()) as string[]))
         result.push(...(q.Stages["Late"].sort((a, b) => 0.5 - Math.random()) as string[]))
-        setInterviewQuestion(result)
         return result
     }
 

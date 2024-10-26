@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"io/fs"
 	"os"
 
 	"gopkg.in/yaml.v3"
@@ -64,16 +65,16 @@ func (a *App) StartInterview(company string) Questions {
 }
 
 func (a *App) ReadAllfiles() []File {
-	files, err := os.ReadDir("./*.yaml")
+	root := os.DirFS("./")
+	files, err := fs.Glob(root, "*.yaml")
 	if err != nil {
 		panic(err)
 	}
 	var result []File
 	var fileData File
 	for _, file := range files {
-		fmt.Println(file.Name(), file.IsDir())
-		fileData.Name = file.Name()
-		fileData.RelativePath = "/" + file.Name() + ".yaml"
+		fileData.Name = file
+		fileData.RelativePath = "./" + file
 		result = append(result, fileData)
 	}
 	return result

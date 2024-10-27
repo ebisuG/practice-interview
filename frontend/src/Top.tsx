@@ -1,9 +1,7 @@
 //The import path should be relative path for build.
 import { useState } from 'react';
-import logo from './assets/images/logo-universal.png';
 import Files from './components/Files';
 import './Top.css';
-import { Link } from 'react-router-dom';
 import Edit from './components/Edit';
 
 function Top() {
@@ -23,17 +21,17 @@ function Top() {
     }
 
     return (
-        <div id="Top">
-            <img src={logo} id="logo" alt="logo" />
+        <div id="Top" className='flex justify-center m-60'>
             {isEditMode ?
-                <Edit {...{ filePath: edittingFilePath, setNormalMode }} />
-                :
-                <Files {...{ setEditMode, getEdittingFilePath }} />
+                <>
+                    <Edit {...{ filePath: edittingFilePath, setNormalMode }} />
+                </>
+                : <>
+                    <div>
+                        <Files {...{ setEditMode, getEdittingFilePath }} />
+                    </div>
+                </>
             }
-            <div>
-                <Link to={"interview"}>Go to interview</Link>
-            </div>
-
         </div>
     )
 }

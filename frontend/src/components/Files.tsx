@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react"
 import { ReadAllfiles } from "../../wailsjs/go/main/App"
 import { main } from "../../wailsjs/go/models"
+import { Link } from "react-router-dom"
 
 
 interface props {
     setEditMode: () => void
-    getEdittingFilePath: (path:string) => void
+    getEdittingFilePath: (path: string) => void
 }
 
 function Files(props: props) {
@@ -35,6 +36,9 @@ function Files(props: props) {
                         <div onClick={() => { startEdit(elem.RelativePath) }}>
                             {elem.Name.split(".")[0]}<br />
                         </div>
+                    </div>
+                    <div>
+                        <Link to={"interview"}>Go to interview</Link>
                     </div>
                 </>)
             })}

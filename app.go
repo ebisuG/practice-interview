@@ -3,8 +3,10 @@ package main
 import (
 	"context"
 	"fmt"
+	"io/fs"
 	"os"
 
+	wailsRuntime "github.com/wailsapp/wails/v2/pkg/runtime"
 	"gopkg.in/yaml.v3"
 )
 
@@ -27,6 +29,11 @@ type Sample struct {
 	SampleText string `yaml:"sample"`
 }
 
+type File struct {
+	RelativePath string
+	Name         string
+}
+
 // NewApp creates a new App application struct
 func NewApp() *App {
 	return &App{}
@@ -36,6 +43,7 @@ func NewApp() *App {
 // so we can call the runtime methods
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
+	wailsRuntime.EventsOn(a.ctx, "writeYaml", a.WriteFile)
 }
 
 // Greet returns a greeting for the given name
@@ -43,7 +51,7 @@ func (a *App) Greet(name string) string {
 	return fmt.Sprintf("Hello %s, It's show time!", name)
 }
 
-func (a *App) StartInterview(company string) Questions {
+func (a *App) ReadQuestionFile(company string) Questions {
 	var questionSets Questions
 	yamlFile, err := os.ReadFile("./data/company.yaml")
 	if err != nil {
@@ -56,4 +64,24 @@ func (a *App) StartInterview(company string) Questions {
 	fmt.Println("questionSets is :", questionSets)
 	// return fmt.Sprintf("yml file is : %s", questionSets)
 	return questionSets
+}
+
+func (a *App) ReadAllfiles() []File {
+	root := os.DirFS("./")
+	files, err := fs.Glob(root, "*.yaml")
+	if err != nil {
+		panic(err)
+	}
+	var result []File
+	var fileData File
+	for _, file := range files {
+		fileData.Name = file
+		fileData.RelativePath = "./" + file
+		result = append(result, fileData)
+	}
+	return result
+}
+
+func (a *App) WriteFile(data ...interface{}) {
+	fmt.Println("data is :", data)
 }

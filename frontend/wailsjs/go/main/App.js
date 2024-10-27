@@ -13,3 +13,7 @@ export function ReadAllfiles() {
 export function ReadQuestionFile(arg1) {
   return window['go']['main']['App']['ReadQuestionFile'](arg1);
 }
+
+export function WriteFile(arg1) {
+  return window['go']['main']['App']['WriteFile'](arg1);
+}

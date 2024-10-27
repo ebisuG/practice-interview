@@ -7,3 +7,5 @@ export function Greet(arg1:string):Promise<string>;
 export function ReadAllfiles():Promise<Array<main.File>>;
 
 export function ReadQuestionFile(arg1:string):Promise<main.Questions>;
+
+export function WriteFile(arg1:Array<any>):Promise<void>;

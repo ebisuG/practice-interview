@@ -53,7 +53,7 @@ func (a *App) Greet(name string) string {
 
 func (a *App) ReadQuestionFile(company string) Questions {
 	var questionSets Questions
-	yamlFile, err := os.ReadFile("./data/company.yaml")
+	yamlFile, err := os.ReadFile("./data/" + company)
 	if err != nil {
 		panic(err)
 	}

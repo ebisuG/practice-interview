@@ -13,7 +13,8 @@ function Edit(props: props) {
 
 
     useEffect(() => {
-        ReadQuestionFile("").then((result) => {
+        console.log("filePath is :",props.filePath)
+        ReadQuestionFile(props.filePath).then((result) => {
             // const data = getEdittingQuestions(result)
             setInterviewQuestion(result)
         })
@@ -42,19 +43,21 @@ function Edit(props: props) {
 
     return (
         <>
-            Edit page
-            {props.filePath}
-            <button onClick={props.setNormalMode}>Go back to the top page</button>
-            <button onClick={SaveQuestion}>Save data</button>
-            <br />
-            <br />
-            <EditQuestionRow {...{ stage: "Early", questions: interviewQuestion?.Stages["Early"] as string[], updateQuestion }} />
-            <br />
-            <br />
-            <EditQuestionRow {...{ stage: "Middle", questions: interviewQuestion?.Stages["Middle"] as string[], updateQuestion }} />
-            <br />
-            <br />
-            <EditQuestionRow {...{ stage: "Late", questions: interviewQuestion?.Stages["Late"] as string[], updateQuestion }} />
+            <div>
+                Edit page
+                {props.filePath}
+                <div className="cursor-pointer" onClick={props.setNormalMode}>Go back to the top page</div>
+                <div className="cursor-pointer" onClick={SaveQuestion}>Save data</div>
+                <br />
+                <br />
+                <EditQuestionRow {...{ stage: "Early", questions: interviewQuestion?.Stages["Early"] as string[], updateQuestion }} />
+                <br />
+                <br />
+                <EditQuestionRow {...{ stage: "Middle", questions: interviewQuestion?.Stages["Middle"] as string[], updateQuestion }} />
+                <br />
+                <br />
+                <EditQuestionRow {...{ stage: "Late", questions: interviewQuestion?.Stages["Late"] as string[], updateQuestion }} />
+            </div>
         </>
 
     )

@@ -9,7 +9,7 @@ interface props {
 }
 
 function EditQuestionRow(props: props) {
-    const [questions, setQuestions] = useState<string[]>(props.questions)
+    const [tempQuestions, setTempQuestions] = useState<string[]>(props.questions)
 
 
     // useEffect(() => {
@@ -39,7 +39,7 @@ function EditQuestionRow(props: props) {
             <div>
                 One row for editting
                 {props.stage}<br />
-                {props.questions?.map((elem, ind) => {
+                {tempQuestions?.map((elem, ind) => {
                     return <>
                         <div key={elem}>
                             {elem}

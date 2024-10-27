@@ -36,9 +36,17 @@ function EditQuestionRow(props: props) {
 
     return (
         <>
-        One row for editting
-            {props.stage}<br />
-            {props.questions}
+            <div>
+                One row for editting
+                {props.stage}<br />
+                {props.questions?.map((elem, ind) => {
+                    return <>
+                        <div key={elem}>
+                            {elem}
+                        </div>
+                    </>
+                })}
+            </div>
         </>
 
     )

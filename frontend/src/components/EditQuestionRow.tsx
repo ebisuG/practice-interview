@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react"
-import { ReadQuestionFile, WriteFile } from "../..//wailsjs/go/main/App"
+import { useRef, useState } from "react"
 import { main } from "wailsjs/go/models"
 
 interface props {
@@ -9,42 +8,31 @@ interface props {
 }
 
 function EditQuestionRow(props: props) {
-    const [tempQuestions, setTempQuestions] = useState<string[]>(props.questions)
+    //Reference for real element
+    const editingQuestions = useRef<HTMLTextAreaElement[]>([])
 
+    function handleOnChange(updated: string, ind: number) {
+        editingQuestions.current[ind].value = updated;
 
-    // useEffect(() => {
-    //     ReadQuestionFile("").then((result) => {
-    //         const data = getEdittingQuestions(result)
-    //         setInterviewQuestion(data)
-    //     })
-    // }, [])
-
-    // function getEdittingQuestions(q: main.Questions): string[] {
-    //     const result: string[] = []
-
-    //     result.push(...(q.Stages["Early"] as string[]))
-    //     result.push(...(q.Stages["Middle"] as string[]))
-    //     result.push(...(q.Stages["Late"] as string[]))
-    //     return result
-    // }
-
-
-    // function SaveQuestion(){
-    //     console.log("save : ", interviewQuestion)
-    //     WriteFile(interviewQuestion)
-    // }
+        //Update parent state
+        props.updateQuestion(props.stage, editingQuestions.current.map((elem) => elem.value))
+    }
 
     return (
         <>
             <div>
-                One row for editting
+                One row for editting<br />
                 {props.stage}<br />
-                {tempQuestions?.map((elem, ind) => {
-                    return <>
+                {props.questions?.map((elem, ind) => {
+                    return (
                         <div key={elem}>
-                            {elem}
+                            <textarea ref={el => editingQuestions.current[ind] = el as HTMLTextAreaElement} cols={40} rows={2}
+                                key={ind}
+                                defaultValue={elem}
+                                onChange={(e) => handleOnChange(e.target.value, ind)}
+                            />
                         </div>
-                    </>
+                    )
                 })}
             </div>
         </>

@@ -34,6 +34,15 @@ type File struct {
 	Name         string
 }
 
+type Converter interface {
+	ParseDataFromFront() FileToWrite
+}
+
+type FileToWrite struct {
+	FilePath string
+	Content  Questions
+}
+
 // NewApp creates a new App application struct
 func NewApp() *App {
 	return &App{}
@@ -61,8 +70,7 @@ func (a *App) ReadQuestionFile(company string) Questions {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("questionSets is :", questionSets)
-	// return fmt.Sprintf("yml file is : %s", questionSets)
+
 	return questionSets
 }
 
@@ -83,5 +91,49 @@ func (a *App) ReadAllfiles() []File {
 }
 
 func (a *App) WriteQuestionFile(data ...interface{}) {
-	fmt.Println("data is :", data)
+	cast := ParseDataFromFront(data)
+	fmt.Println("cast : ", cast)
+
+}
+
+func ParseDataFromFront(data ...interface{}) FileToWrite {
+	cast, errBool := data[0].([]interface{})[0].([]interface{})[0].(map[string]interface{})
+	if !errBool {
+		panic("cast failed")
+	}
+	filePath := cast["filePath"].(string)
+
+	castEachStage, errBool := cast["questions"].(map[string]interface{})
+	if !errBool {
+		panic("castEachStage failed")
+	}
+	EachStage := castEachStage["Stages"].(map[string]interface{})
+
+	stagesEarly, errBool := EachStage["Early"].([]interface{})
+	if !errBool {
+		panic("stagesEarly failed")
+	}
+
+	stagesMiddle, errBool := EachStage["Middle"].([]interface{})
+	if !errBool {
+		panic("stagesMiddle failed")
+	}
+
+	stagesLate, errBool := EachStage["Late"].([]interface{})
+	if !errBool {
+		panic("stagesLate failed")
+	}
+
+	var result FileToWrite
+	for _, v := range stagesEarly {
+		result.Content.Stages.Early = append(result.Content.Stages.Early, v.(string))
+	}
+	for _, v := range stagesMiddle {
+		result.Content.Stages.Middle = append(result.Content.Stages.Middle, v.(string))
+	}
+	for _, v := range stagesLate {
+		result.Content.Stages.Late = append(result.Content.Stages.Late, v.(string))
+	}
+	result.FilePath = filePath
+	return result
 }

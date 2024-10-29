@@ -30,16 +30,11 @@ function Files(props: props) {
             {files.map((elem, ind) => {
                 return (
                     <div key={ind}>
-                        <div className="cursor-pointer 
-                    outline outline-1 outline-[#969696] rounded 
-                    mb-1 p-1
-                    min-w-64 hover:bg-slate-300">
-                            <div onClick={() => { startEdit(elem.RelativePath) }}>
-                                {elem.Name.split(".")[0]}<br />
-                            </div>
-                        </div>
-                        <div>
-                            <Link to={"interview"}>Go to interview</Link>
+                        <div className="outline outline-1 outline-[#969696] rounded 
+                    mb-1 p-1 min-w-96 hover:bg-slate-300 flex ">
+                            <div className="w-60">{elem.Name.split(".")[0]}<br /></div>
+                            <div className="hover:underline cursor-pointer w-10" onClick={() => { startEdit(elem.RelativePath) }}>Edit</div>
+                            <div className="hover:underline cursor-pointer w-20"><Link to={"interview"}>Go to interview</Link></div>
                         </div>
                     </div>
                 )

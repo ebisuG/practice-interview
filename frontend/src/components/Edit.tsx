@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { ReadQuestionFile, WriteQuestionFile } from "../..//wailsjs/go/main/App"
+import { ReadQuestionFile } from "../..//wailsjs/go/main/App"
 import { main } from "wailsjs/go/models"
 import { EventsEmit } from "wailsjs/runtime/runtime"
 import EditQuestionRow from "./EditQuestionRow"
@@ -20,20 +20,9 @@ function Edit(props: props) {
 
     useEffect(() => {
         ReadQuestionFile(props.filePath).then((result) => {
-            // const data = getEdittingQuestions(result)
             setInterviewQuestion(result)
         })
     }, [])
-
-    // function getEdittingQuestions(q: main.Questions): string[] {
-    //     const result: string[] = []
-
-    //     result.push(...(q.Stages["Early"] as string[]))
-    //     result.push(...(q.Stages["Middle"] as string[]))
-    //     result.push(...(q.Stages["Late"] as string[]))
-    //     return result
-    // }
-
 
     function SaveQuestion() {
         const data :FileToWrite = {filePath:props.filePath, questions:interviewQuestion}

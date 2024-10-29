@@ -2,15 +2,21 @@ import { useEffect, useState } from 'react';
 import { main } from "../../wailsjs/go/models"
 import { ReadQuestionFile } from '../../wailsjs/go/main/App';
 
-function DisplayQuestion() {
+interface props {
+    filePath: string | null
+}
+
+function DisplayQuestion(props: props) {
     const [interviewQuestion, setInterviewQuestion] = useState<string[]>([])
     const [interviewQuestionIndex, setInterviewQuestionIndex] = useState<number>(0)
 
     useEffect(() => {
-        ReadQuestionFile("").then((result) => {
-            const data = getInterviewQuestions(result)
-            setInterviewQuestion(data)
-        })
+        if (props.filePath != null) {
+            ReadQuestionFile(props.filePath).then((result) => {
+                const data = getInterviewQuestions(result)
+                setInterviewQuestion(data)
+            })
+        }
     }, [])
 
     useEffect(() => {

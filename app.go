@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"io"
 	"io/fs"
 	"os"
 
@@ -93,6 +94,22 @@ func (a *App) ReadAllfiles() []File {
 func (a *App) WriteQuestionFile(data ...interface{}) {
 	cast := ParseDataFromFront(data)
 	fmt.Println("cast : ", cast)
+
+	yaml, err := yaml.Marshal(&cast.Content)
+	if err != nil {
+		panic(err)
+	}
+
+	f, err := os.Create(cast.FilePath)
+	if err != nil {
+		panic(err)
+	}
+	defer f.Close()
+
+	_, err = io.WriteString(f, string(yaml))
+	if err != nil {
+		panic(err)
+	}
 
 }
 

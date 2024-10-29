@@ -14,6 +14,6 @@ export function ReadQuestionFile(arg1) {
   return window['go']['main']['App']['ReadQuestionFile'](arg1);
 }
 
-export function WriteFile(arg1) {
-  return window['go']['main']['App']['WriteFile'](arg1);
+export function WriteQuestionFile(arg1) {
+  return window['go']['main']['App']['WriteQuestionFile'](arg1);
 }

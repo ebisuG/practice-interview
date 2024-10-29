@@ -32,7 +32,7 @@ function Edit(props: props) {
 
     function SaveQuestion() {
         console.log("save : ", interviewQuestion)
-        WriteQuestionFile([interviewQuestion])
+        WriteQuestionFile([props.filePath,interviewQuestion])
     }
 
     function updateQuestion(s: keyof main.Stages, q: string[]) {

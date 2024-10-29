@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { ReadQuestionFile, WriteFile } from "../..//wailsjs/go/main/App"
+import { ReadQuestionFile, WriteQuestionFile } from "../..//wailsjs/go/main/App"
 import { main } from "wailsjs/go/models"
 import EditQuestionRow from "./EditQuestionRow"
 
@@ -32,7 +32,7 @@ function Edit(props: props) {
 
     function SaveQuestion() {
         console.log("save : ", interviewQuestion)
-        WriteFile([interviewQuestion])
+        WriteQuestionFile([interviewQuestion])
     }
 
     function updateQuestion(s: keyof main.Stages, q: string[]) {

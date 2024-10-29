@@ -43,7 +43,7 @@ func NewApp() *App {
 // so we can call the runtime methods
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
-	wailsRuntime.EventsOn(a.ctx, "writeYaml", a.WriteFile)
+	wailsRuntime.EventsOn(a.ctx, "writeYaml", a.WriteQuestionFile)
 }
 
 // Greet returns a greeting for the given name
@@ -82,6 +82,6 @@ func (a *App) ReadAllfiles() []File {
 	return result
 }
 
-func (a *App) WriteFile(data ...interface{}) {
+func (a *App) WriteQuestionFile(data ...interface{}) {
 	fmt.Println("data is :", data)
 }

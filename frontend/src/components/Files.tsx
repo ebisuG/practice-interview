@@ -11,7 +11,6 @@ interface props {
 
 function Files(props: props) {
     const [files, setFiles] = useState<main.File[]>([])
-    const [edittingFilePath, setEdittingFilePath] = useState<string>("")
 
     useEffect(() => {
         ReadAllfiles().then((result) => {
@@ -34,7 +33,7 @@ function Files(props: props) {
                     mb-1 p-1 min-w-96 hover:bg-slate-300 flex ">
                             <div className="w-60">{elem.Name.split(".")[0]}<br /></div>
                             <div className="hover:underline cursor-pointer w-10" onClick={() => { startEdit(elem.RelativePath) }}>Edit</div>
-                            <div className="hover:underline cursor-pointer w-20"><Link to={"interview"}>Go to interview</Link></div>
+                            <div className="hover:underline cursor-pointer w-20"><Link to={`interview?filePath=${elem.RelativePath}`}>Go to interview</Link></div>
                         </div>
                     </div>
                 )

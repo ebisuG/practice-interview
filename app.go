@@ -89,13 +89,11 @@ func (a *App) ReadAllfiles() []File {
 		fileData.RelativePath = "./data/" + file
 		result = append(result, fileData)
 	}
-	fmt.Println("result : ", result)
 	return result
 }
 
 func (a *App) WriteQuestionFile(data ...interface{}) {
 	cast := ParseDataFromFront(data)
-	fmt.Println("cast : ", cast)
 
 	yaml, err := yaml.Marshal(&cast.Content)
 	if err != nil {

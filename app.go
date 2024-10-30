@@ -61,9 +61,10 @@ func (a *App) Greet(name string) string {
 	return fmt.Sprintf("Hello %s, It's show time!", name)
 }
 
-func (a *App) ReadQuestionFile(company string) Questions {
+func (a *App) ReadQuestionFile(filePath string) Questions {
 	var questionSets Questions
-	yamlFile, err := os.ReadFile("./data/" + company)
+	yamlFile, err := os.ReadFile(filePath)
+	// yamlFile, err := os.ReadFile("./data/" + company)
 	if err != nil {
 		panic(err)
 	}
@@ -76,7 +77,7 @@ func (a *App) ReadQuestionFile(company string) Questions {
 }
 
 func (a *App) ReadAllfiles() []File {
-	root := os.DirFS("./")
+	root := os.DirFS("./data/")
 	files, err := fs.Glob(root, "*.yaml")
 	if err != nil {
 		panic(err)
@@ -85,9 +86,10 @@ func (a *App) ReadAllfiles() []File {
 	var fileData File
 	for _, file := range files {
 		fileData.Name = file
-		fileData.RelativePath = "./" + file
+		fileData.RelativePath = "./data/" + file
 		result = append(result, fileData)
 	}
+	fmt.Println("result : ", result)
 	return result
 }
 

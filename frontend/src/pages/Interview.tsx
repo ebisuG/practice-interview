@@ -8,11 +8,17 @@ function Interview() {
 
     return (
         <>
-        <div>
-            <img src={logo} id="logo" alt="logo"/>
-            <DisplayQuestion {...{filePath:searchParams.get("filePath")}}/>
-        </div>
-        <Link to={"/finish"}>Go to finish</Link>
+            <div className='flex justify-center mt-48'>
+                <DisplayQuestion {...{ filePath: searchParams.get("filePath") }} />
+            </div>
+            <div className='flex justify-center mt-5'>
+                <div className='w-36 cursor-pointer
+                bg-orange-200 hover:bg-orange-400 
+                    rounded border-orange-200 hover:border-orange-400 border-2 
+                    p-2 text-center'>
+                    <Link to={"/finish"}>Go to finish</Link>
+                </div>
+            </div>
 
         </>
     )

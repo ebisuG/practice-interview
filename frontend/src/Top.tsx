@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Files from './components/Files';
 import './Top.css';
 import Edit from './components/Edit';
+import TopTitle from './components/TopTitle';
 
 function Top() {
     const [isEditMode, setIsEditMode] = useState<boolean>(false)
@@ -21,15 +22,16 @@ function Top() {
     }
 
     return (
-        <div id="Top" className='flex justify-center m-60'>
+        <div id="Top" className='flex justify-center mt-5'>
             {isEditMode ?
                 <>
                     <Edit {...{ filePath: edittingFilePath, setNormalMode }} />
                 </>
                 : <>
-                    <div>
-                        <Files {...{ setEditMode, getEdittingFilePath }} />
-                    </div>
+                <div className=''>
+                    <TopTitle />
+                    <Files {...{ setEditMode, getEdittingFilePath }} />
+                </div>
                 </>
             }
         </div>

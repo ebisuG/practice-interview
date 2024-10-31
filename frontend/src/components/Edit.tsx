@@ -25,7 +25,7 @@ function Edit(props: props) {
     }, [])
 
     function SaveQuestion() {
-        const data :FileToWrite = {filePath:props.filePath, questions:interviewQuestion}
+        const data: FileToWrite = { filePath: props.filePath, questions: interviewQuestion }
         EventsEmit("writeYaml", [data]);
     }
 
@@ -37,11 +37,20 @@ function Edit(props: props) {
 
     return (
         <>
-            <div>
-                Edit page
-                {props.filePath}
-                <div className="cursor-pointer" onClick={props.setNormalMode}>Go back to the top page</div>
-                <div className="cursor-pointer" onClick={SaveQuestion}>Save data</div>
+            <div className="border-2 p-2 bg-slate-100 border-slate-100">
+                Editing: "{props.filePath}"
+                <div className="flex gap-2 justify-center">
+                    <div className="cursor-pointer 
+                    bg-lime-200 hover:bg-lime-400 
+                    rounded border-lime-200 hover:border-lime-400 border-2 
+                    p-2"
+                        onClick={props.setNormalMode}>Go back to the top page</div>
+                    <div className="cursor-pointer 
+                bg-orange-200 hover:bg-orange-400 
+                    rounded border-orange-200 hover:border-orange-400 border-2 
+                    p-2"
+                        onClick={SaveQuestion}>Save data</div>
+                </div>
                 <br />
                 <br />
                 <EditQuestionRow {...{ stage: "Early", questions: interviewQuestion?.Stages["Early"] as string[], updateQuestion }} />

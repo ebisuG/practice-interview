@@ -21,8 +21,9 @@ function EditQuestionRow(props: props) {
     return (
         <>
             <div>
-                One row for editting<br />
-                {props.stage}<br />
+                <div className="text-lg mb-2">
+                    In {props.stage} Phase<br />
+                </div>
                 {props.questions?.map((elem, ind) => {
                     return (
                         <div key={elem}>

@@ -41,8 +41,8 @@ function DisplayQuestion(props: props) {
 
     return (
         <div id="DisplayQuestion">
-            <div>
-                Question from interviewe is : {interviewQuestion[interviewQuestionIndex]}
+            <div className='min-h-7'>
+                {interviewQuestion[interviewQuestionIndex]}
             </div>
         </div>
     )

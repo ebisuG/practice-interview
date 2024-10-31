@@ -20,14 +20,14 @@ function EditQuestionRow(props: props) {
 
     return (
         <>
-            <div>
+            <div className="w-3/4">
                 <div className="text-lg mb-2">
                     In {props.stage} Phase<br />
                 </div>
                 {props.questions?.map((elem, ind) => {
                     return (
                         <div key={elem}>
-                            <textarea ref={el => editingQuestions.current[ind] = el as HTMLTextAreaElement} cols={40} rows={2}
+                            <textarea ref={el => editingQuestions.current[ind] = el as HTMLTextAreaElement} cols={60} rows={2}
                                 key={ind}
                                 defaultValue={elem}
                                 onChange={(e) => handleOnChange(e.target.value, ind)}

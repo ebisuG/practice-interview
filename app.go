@@ -54,6 +54,7 @@ func NewApp() *App {
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 	wailsRuntime.EventsOn(a.ctx, "writeYaml", a.WriteQuestionFile)
+	wailsRuntime.EventsOn(a.ctx, "createYaml", a.CreateNewFile)
 }
 
 // Greet returns a greeting for the given name
@@ -111,6 +112,19 @@ func (a *App) WriteQuestionFile(data ...interface{}) {
 		panic(err)
 	}
 
+}
+
+func (a *App) CreateNewFile(data ...interface{}) {
+	name, err := data[0].(string)
+	if !err {
+		panic(err)
+	}
+
+	f, err2 := os.Create("./data/" + name + ".yaml")
+	if err2 != nil {
+		panic(err)
+	}
+	defer f.Close()
 }
 
 func ParseDataFromFront(data ...interface{}) FileToWrite {

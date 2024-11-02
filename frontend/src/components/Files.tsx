@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { CreateNewFile, ReadAllfiles } from "../../wailsjs/go/main/App"
+import { ReadAllfiles } from "../../wailsjs/go/main/App"
 import { main } from "../../wailsjs/go/models"
 import { Link } from "react-router-dom"
 import CreateFile from "./CreateFile"
@@ -23,10 +23,6 @@ function Files(props: props) {
     function startEdit(filePath: string) {
         props.setEditMode()
         props.getEdittingFilePath(filePath)
-    }
-
-    function createFile(name:string){
-        CreateNewFile([name])
     }
 
     return (<>

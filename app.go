@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"io"
 	"io/fs"
@@ -119,8 +120,13 @@ func (a *App) CreateNewFile(data ...interface{}) {
 	if !err {
 		panic(err)
 	}
+	filePath := "./data/" + name + ".yaml"
 
-	f, err2 := os.Create("./data/" + name + ".yaml")
+	if _, err := os.Stat(filePath); !errors.Is(err, os.ErrNotExist) {
+		return
+	}
+
+	f, err2 := os.Create(filePath)
 	if err2 != nil {
 		panic(err)
 	}

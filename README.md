@@ -20,3 +20,21 @@ to this in your browser, and you can call your Go code from devtools.
 ## Building
 
 To build a redistributable, production mode package, use `wails build`.
+
+
+## Yaml File Format
+```yaml
+phase:
+    early:
+        - Can you explain yourself?
+        - Could you explain the reason you want to work here?
+    middle:
+        - What was the most difficult job in your carrer?
+        - How do you handle a conflicts in your team?
+        - What do you think your strongness and weakness?
+    late:
+        - How much salary do you want?
+        - What is job for you?
+        - Do you like hard work?
+        - Do you have any question?
+```

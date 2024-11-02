@@ -26,10 +26,10 @@ function CreateFile(props: props) {
     return ReactDOM.createPortal(
         <>
             <div
-                className="z-20  bg-slate-100 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <div onClick={props.close} className="hover:cursor-pointer">X</div>
-                <div><input ref={() => fileName} defaultValue={""} onChange={(e)=>handleOnChange(e)}/></div>
-                <div>
+                className="z-20  bg-slate-100 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-black border ">
+                <div onClick={props.close} className="hover:cursor-pointer text-white bg-red-500 w-5 p-1 rounded">X</div>
+                <div className="m-1"><input ref={() => fileName} defaultValue={""} onChange={(e)=>handleOnChange(e)}/></div>
+                <div className="m-1 text-center">
                     <button onClick={()=>createFile(fileName.current)}> Create</button>
                 </div>
             </div>

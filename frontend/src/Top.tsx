@@ -27,12 +27,11 @@ function Top() {
                 <>
                     <Edit {...{ filePath: edittingFilePath, setNormalMode }} />
                 </>
-                : <>
-                <div className=''>
+                :
+                <div>
                     <TopTitle />
                     <Files {...{ setEditMode, getEdittingFilePath }} />
                 </div>
-                </>
             }
         </div>
     )

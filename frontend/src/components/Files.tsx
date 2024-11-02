@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { ReadAllfiles } from "../../wailsjs/go/main/App"
 import { main } from "../../wailsjs/go/models"
 import { Link } from "react-router-dom"
+import CreateFile from "./CreateFile"
 
 
 interface props {
@@ -11,6 +12,7 @@ interface props {
 
 function Files(props: props) {
     const [files, setFiles] = useState<main.File[]>([])
+    const [isModal, setIsModal] = useState<boolean>(false)
 
     useEffect(() => {
         ReadAllfiles().then((result) => {
@@ -34,11 +36,15 @@ function Files(props: props) {
                             <div className="w-60">{elem.Name.split(".")[0]}<br /></div>
                             <div className="hover:underline cursor-pointer w-10" onClick={() => { startEdit(elem.RelativePath) }}>Edit</div>
                             <div className="hover:underline cursor-pointer w-20"><Link to={`interview?filePath=${elem.RelativePath}`}>Go to interview</Link></div>
+                            <div>Delete</div>
                         </div>
                     </div>
                 )
             })}
-
+            <div>
+                <div onClick={()=>setIsModal(true)}>Create</div>
+                <CreateFile {...{open:isModal, close:()=>setIsModal(false), setIsModal:setIsModal}}/>
+            </div>
         </div>
     </>)
 

@@ -125,6 +125,17 @@ func (a *App) CreateNewFile(data ...interface{}) {
 		panic(err)
 	}
 	defer f.Close()
+
+	var initial Questions
+	yaml, err3 := yaml.Marshal(&initial)
+	if err3 != nil {
+		panic(err3)
+	}
+
+	_, err4 := io.WriteString(f, string(yaml))
+	if err4 != nil {
+		panic(err)
+	}
 }
 
 func ParseDataFromFront(data ...interface{}) FileToWrite {

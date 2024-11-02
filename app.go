@@ -115,7 +115,7 @@ func (a *App) WriteQuestionFile(data ...interface{}) {
 }
 
 func (a *App) CreateNewFile(data ...interface{}) {
-	name, err := data[0].(string)
+	name, err := data[0].([]interface{})[0].(string)
 	if !err {
 		panic(err)
 	}

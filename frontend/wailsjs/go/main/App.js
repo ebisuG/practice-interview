@@ -6,6 +6,10 @@ export function CreateNewFile(arg1) {
   return window['go']['main']['App']['CreateNewFile'](arg1);
 }
 
+export function DeleteQuestionFile(arg1) {
+  return window['go']['main']['App']['DeleteQuestionFile'](arg1);
+}
+
 export function Greet(arg1) {
   return window['go']['main']['App']['Greet'](arg1);
 }

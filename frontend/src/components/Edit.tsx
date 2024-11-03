@@ -17,7 +17,6 @@ interface FileToWrite {
 function Edit(props: props) {
     const [interviewQuestion, setInterviewQuestion] = useState<main.Questions | null>(null)
 
-
     useEffect(() => {
         ReadQuestionFile(props.filePath).then((result) => {
             setInterviewQuestion(result)
@@ -30,13 +29,14 @@ function Edit(props: props) {
     }
 
     function updateQuestion(s: keyof main.Stages, q: string[]) {
-        const copy = interviewQuestion as main.Questions
+        const copy = structuredClone(interviewQuestion as main.Questions)
         copy.Stages[s] = q
         setInterviewQuestion(copy)
     }
 
     return (
         <>
+
             <div className="border-2 p-2 bg-slate-100 border-slate-100">
                 Editing: "{props.filePath}"
                 <div className="flex gap-2 justify-center">
@@ -47,19 +47,15 @@ function Edit(props: props) {
                         onClick={props.setNormalMode}>Go back to the top page</div>
                     <div className="cursor-pointer 
                 bg-orange-200 hover:bg-orange-400 
-                    rounded border-orange-200 hover:border-orange-400 border-2 
-                    p-2"
+                rounded border-orange-200 hover:border-orange-400 border-2 
+                p-2"
                         onClick={SaveQuestion}>Save data</div>
                 </div>
                 <br />
                 <br />
-                <EditQuestionRow {...{ stage: "Early", questions: interviewQuestion?.Stages["Early"] as string[], updateQuestion }} />
-                <br />
-                <br />
-                <EditQuestionRow {...{ stage: "Middle", questions: interviewQuestion?.Stages["Middle"] as string[], updateQuestion }} />
-                <br />
-                <br />
-                <EditQuestionRow {...{ stage: "Late", questions: interviewQuestion?.Stages["Late"] as string[], updateQuestion }} />
+                    <EditQuestionRow key={"Early"} {...{ stage: "Early", updateQuestion, questions:interviewQuestion?.Stages["Early"] as string[] }} />
+                    <EditQuestionRow key={"Middle"} {...{ stage: "Middle", updateQuestion, questions:interviewQuestion?.Stages["Middle"] as string[] }} />
+                    <EditQuestionRow key={"Late"} {...{ stage: "Late", updateQuestion, questions:interviewQuestion?.Stages["Late"] as string[] }} />
             </div>
         </>
 

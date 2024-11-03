@@ -50,7 +50,7 @@ function Files(props: props) {
             })}
             <div>
                 <div onClick={()=>setIsModal(true)}>Create</div>
-                <CreateFile {...{open:isModal, close:()=>setIsModal(false), setIsModal:setIsModal}}/>
+                <CreateFile {...{open:isModal, close:()=>setIsModal(false), setIsModal:setIsModal, setFiles}}/>
             </div>
         </div>
     </>)

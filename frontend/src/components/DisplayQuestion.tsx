@@ -4,6 +4,7 @@ import { ReadQuestionFile } from '../../wailsjs/go/main/App';
 
 interface props {
     filePath: string | null
+    setIsFinished: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 function DisplayQuestion(props: props) {
@@ -29,6 +30,12 @@ function DisplayQuestion(props: props) {
         return () => clearInterval(intervalId)
 
     }, [interviewQuestion, interviewQuestionIndex])
+
+    useEffect(() => {
+        if (interviewQuestionIndex == interviewQuestion.length - 1) {
+            props.setIsFinished(true)
+        }
+    }, [interviewQuestionIndex])
 
     function getInterviewQuestions(q: main.Questions): string[] {
         const result: string[] = []

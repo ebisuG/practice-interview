@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io"
 	"io/fs"
+	"log"
 	"os"
 
 	wailsRuntime "github.com/wailsapp/wails/v2/pkg/runtime"
@@ -56,6 +57,7 @@ func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
 	wailsRuntime.EventsOn(a.ctx, "writeYaml", a.WriteQuestionFile)
 	wailsRuntime.EventsOn(a.ctx, "createYaml", a.CreateNewFile)
+	wailsRuntime.EventsOn(a.ctx, "deleteYaml", a.DeleteQuestionFile)
 }
 
 // Greet returns a greeting for the given name
@@ -141,6 +143,17 @@ func (a *App) CreateNewFile(data ...interface{}) {
 	_, err4 := io.WriteString(f, string(yaml))
 	if err4 != nil {
 		panic(err)
+	}
+}
+
+func (a *App) DeleteQuestionFile(data ...interface{}) {
+	file, err := data[0].([]interface{})[0].(string)
+	if !err {
+		panic(err)
+	}
+	err2 := os.Remove(file)
+	if err2 != nil {
+		log.Fatal(err2)
 	}
 }
 

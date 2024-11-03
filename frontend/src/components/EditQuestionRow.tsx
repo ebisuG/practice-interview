@@ -25,8 +25,7 @@ function EditQuestionRow(props: props) {
     }
 
     function DeleteQuestion(ind: number) {
-        const currentQuestions = editingQuestions.current.map((elem) => elem.value)
-        const updatedQuestions = currentQuestions.slice(0, ind).concat(currentQuestions.slice(ind + 1,))
+        const updatedQuestions = props.questions?.slice(0, ind).concat(props.questions?.slice(ind + 1,))
         props.updateQuestion(props.stage, updatedQuestions)
     }
 
@@ -44,7 +43,7 @@ function EditQuestionRow(props: props) {
                                 defaultValue={elem}
                                 onChange={(e) => handleOnChange(e.target.value, ind)}
                             />
-                            <div>Delete</div>
+                            <div onClick={()=>DeleteQuestion(ind)}>Delete</div>
                         </div>
                     )
                 })}

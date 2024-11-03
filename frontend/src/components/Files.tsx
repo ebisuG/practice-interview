@@ -27,6 +27,9 @@ function Files(props: props) {
 
     function deleteFile(filePath:string){
         DeleteQuestionFile([filePath])
+        ReadAllfiles().then((result) => {
+            setFiles(result)
+        })
     }
 
     return (<>

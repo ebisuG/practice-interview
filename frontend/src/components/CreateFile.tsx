@@ -1,11 +1,13 @@
 import { useRef } from "react"
 import ReactDOM from "react-dom"
-import { CreateNewFile } from "wailsjs/go/main/App"
+import { CreateNewFile, ReadAllfiles } from "wailsjs/go/main/App"
+import { main } from "wailsjs/go/models"
 
 interface props {
     close: () => void
     open: boolean
     setIsModal: React.Dispatch<React.SetStateAction<boolean>>
+    setFiles:React.Dispatch<React.SetStateAction<main.File[]>>
 }
 
 function CreateFile(props: props) {
@@ -18,8 +20,11 @@ function CreateFile(props: props) {
         fileName.current = e.target.value
     }
 
-    function createFile(name: string) {
-        CreateNewFile([name])
+    async function createFile(name: string) {
+        await CreateNewFile([name])
+        await ReadAllfiles().then((result) => {
+            props.setFiles(result)
+        })
         props.close()
     }
 

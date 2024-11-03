@@ -27,6 +27,9 @@ function Files(props: props) {
 
     function deleteFile(filePath:string){
         DeleteQuestionFile([filePath])
+        ReadAllfiles().then((result) => {
+            setFiles(result)
+        })
     }
 
     return (<>
@@ -47,7 +50,7 @@ function Files(props: props) {
             })}
             <div>
                 <div onClick={()=>setIsModal(true)}>Create</div>
-                <CreateFile {...{open:isModal, close:()=>setIsModal(false), setIsModal:setIsModal}}/>
+                <CreateFile {...{open:isModal, close:()=>setIsModal(false), setIsModal:setIsModal, setFiles}}/>
             </div>
         </div>
     </>)

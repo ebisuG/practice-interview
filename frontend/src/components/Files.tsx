@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { ReadAllfiles } from "../../wailsjs/go/main/App"
+import { DeleteQuestionFile, ReadAllfiles } from "../../wailsjs/go/main/App"
 import { main } from "../../wailsjs/go/models"
 import { Link } from "react-router-dom"
 import CreateFile from "./CreateFile"
@@ -25,6 +25,10 @@ function Files(props: props) {
         props.getEdittingFilePath(filePath)
     }
 
+    function deleteFile(filePath:string){
+        DeleteQuestionFile([filePath])
+    }
+
     return (<>
 
         <div>
@@ -32,11 +36,11 @@ function Files(props: props) {
                 return (
                     <div key={ind}>
                         <div className="outline outline-1 outline-[#969696] rounded 
-                    mb-1 p-1 min-w-96 hover:bg-slate-300 flex ">
+                    mb-1 p-1 min-w-full hover:bg-slate-300 flex ">
                             <div className="w-60">{elem.Name.split(".")[0]}<br /></div>
                             <div className="hover:underline cursor-pointer w-10" onClick={() => { startEdit(elem.RelativePath) }}>Edit</div>
                             <div className="hover:underline cursor-pointer w-20"><Link to={`interview?filePath=${elem.RelativePath}`}>Go to interview</Link></div>
-                            <div>Delete</div>
+                            <div className="hover:underline cursor-pointer w-12" onClick={()=>{deleteFile(elem.RelativePath)}}>Delete</div>
                         </div>
                     </div>
                 )

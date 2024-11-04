@@ -16,6 +16,9 @@ function DisplayQuestion(props: props) {
             ReadQuestionFile(props.filePath).then((result) => {
                 const data = getInterviewQuestions(result)
                 setInterviewQuestion(data)
+                if(data.length==0){
+                    props.setIsFinished(true)
+                }
             })
         }
     }, [])

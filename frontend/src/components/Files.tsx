@@ -44,7 +44,7 @@ function Files(props: props) {
                 <CreateFile {...{ open: isModal, close: () => setIsModal(false), setIsModal: setIsModal, setFiles }} />
             </div>
 
-            {files.map((elem, ind) => {
+            {files?.map((elem, ind) => {
                 return (
                     <div key={ind} className="flex justify-center">
                         <div className="outline outline-1 outline-[#969696] rounded 

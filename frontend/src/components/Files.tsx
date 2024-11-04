@@ -51,7 +51,7 @@ function Files(props: props) {
                     mb-1 p-1 w-[400px] bg-amber-50 hover:bg-amber-100 flex min-h-12">
                             <div className="hover:underline cursor-pointer w-[250px] text-lg pl-3 pt-3" onClick={() => { startEdit(elem.RelativePath) }}>{elem.Name.split(".yaml")[0]}</div>
                             <div className="hover:underline cursor-pointer w-[50px] pt-3 ml-5"><Link to={`interview?filePath=${elem.RelativePath}`}>Start</Link></div>
-                            <div className="hover:underline cursor-pointer w-[50px] text-sm pt-3 pl-1 pr-1 ml-5 border border-red-200 bg-red-100 hover:bg-red-400 rounded" onClick={() => { deleteFile(elem.RelativePath) }}>Delete</div>
+                            <div className="hover:underline cursor-pointer w-[50px] h-[40px] text-sm pt-3 pl-1 pr-1 ml-5 border border-red-200 bg-red-100 hover:bg-red-400 rounded" onClick={() => { deleteFile(elem.RelativePath) }}>Delete</div>
                         </div>
                     </div>
                 )

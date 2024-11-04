@@ -16,7 +16,7 @@ function DisplayQuestion(props: props) {
             ReadQuestionFile(props.filePath).then((result) => {
                 const data = getInterviewQuestions(result)
                 setInterviewQuestion(data)
-                if(data.length==0){
+                if (data.length == 0) {
                     props.setIsFinished(true)
                 }
             })
@@ -24,18 +24,15 @@ function DisplayQuestion(props: props) {
     }, [])
 
     useEffect(() => {
-        let intervalId: number
-        if (interviewQuestion.length != 0) {
-            intervalId = setInterval(() => {
-                setInterviewQuestionIndex(interviewQuestionIndex + 1)
-            }, 3 * 1000)
-        }
+        const intervalId = setInterval(() => {
+            setInterviewQuestionIndex(interviewQuestionIndex + 1)
+        }, 3 * 1000)
         return () => clearInterval(intervalId)
 
     }, [interviewQuestion, interviewQuestionIndex])
 
     useEffect(() => {
-        if (interviewQuestionIndex == interviewQuestion.length - 1) {
+        if (interviewQuestionIndex == interviewQuestion.length && interviewQuestionIndex != 0) {
             props.setIsFinished(true)
         }
     }, [interviewQuestionIndex])

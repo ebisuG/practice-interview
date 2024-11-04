@@ -37,25 +37,29 @@ function Edit(props: props) {
     return (
         <>
 
-            <div className="border-2 p-2 bg-slate-100 border-slate-100">
-                Editing: "{props.filePath}"
+            <div className="border-2 p-2 bg-amber-50 border-amber-50 w-[600px]">
+                <div className="m-2">
+                    Editing: "{props.filePath}"
+                </div>
                 <div className="flex gap-2 justify-center">
-                    <div className="cursor-pointer 
+                    <div className="cursor-pointer
                     bg-lime-200 hover:bg-lime-400 
                     rounded border-lime-200 hover:border-lime-400 border-2 
                     p-2"
-                        onClick={props.setNormalMode}>Go back to the top page</div>
+                        onClick={props.setNormalMode}>Top page</div>
                     <div className="cursor-pointer 
-                bg-orange-200 hover:bg-orange-400 
-                rounded border-orange-200 hover:border-orange-400 border-2 
+                bg-cyan-200 hover:bg-cyan-400 
+                rounded border-cyan-200 hover:border-cyan-400 border-2 
                 p-2"
                         onClick={SaveQuestion}>Save data</div>
                 </div>
                 <br />
                 <br />
-                    <EditQuestionRow key={"Early"} {...{ stage: "Early", updateQuestion, questions:interviewQuestion?.Stages["Early"] as string[] }} />
-                    <EditQuestionRow key={"Middle"} {...{ stage: "Middle", updateQuestion, questions:interviewQuestion?.Stages["Middle"] as string[] }} />
-                    <EditQuestionRow key={"Late"} {...{ stage: "Late", updateQuestion, questions:interviewQuestion?.Stages["Late"] as string[] }} />
+                <div className="flex flex-col items-center">
+                    <EditQuestionRow key={"Early"} {...{ stage: "Early", updateQuestion, questions: interviewQuestion?.Stages["Early"] as string[] }} />
+                    <EditQuestionRow key={"Middle"} {...{ stage: "Middle", updateQuestion, questions: interviewQuestion?.Stages["Middle"] as string[] }} />
+                    <EditQuestionRow key={"Late"} {...{ stage: "Late", updateQuestion, questions: interviewQuestion?.Stages["Late"] as string[] }} />
+                </div>
             </div>
         </>
 

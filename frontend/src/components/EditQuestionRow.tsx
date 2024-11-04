@@ -31,23 +31,23 @@ function EditQuestionRow(props: props) {
 
     return (
         <>
-            <div className="w-3/4 mb-10">
+            <div className="w-[450px] mb-10 bg-amber-100 border border-amber-100 p-2 rounded">
                 <div className="text-lg mb-2">
                     In {props.stage} Phase<br />
                 </div>
+                <div tabIndex={0} className="m-5 hover:cursor-pointer bg-amber-200 w-[50px] text-center rounded" onClick={() => { AddNewQuestion() }}>Add</div>
                 {props.questions?.map((elem, ind) => {
                     return (
                         <div key={props.stage + ind}>
-                            <textarea ref={el => editingQuestions.current[ind] = el as HTMLTextAreaElement} cols={60} rows={2}
+                            <textarea ref={el => editingQuestions.current[ind] = el as HTMLTextAreaElement} cols={45} rows={2}
                                 key={props.stage + ind + "_textarea"}
                                 defaultValue={elem}
                                 onChange={(e) => handleOnChange(e.target.value, ind)}
                             />
-                            <div onClick={()=>DeleteQuestion(ind)}>Delete</div>
+                            <div tabIndex={0} className="m-1 ml-[350px] hover:cursor-pointer bg-red-200 w-[50px] text-center rounded" onClick={()=>DeleteQuestion(ind)}>Delete</div>
                         </div>
                     )
                 })}
-                <div onClick={() => { AddNewQuestion() }}>Add</div>
             </div>
         </>
 

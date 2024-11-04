@@ -35,11 +35,13 @@ function CreateFile(props: props) {
     return ReactDOM.createPortal(
         <>
             <div
-                className="z-20  bg-slate-100 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-black border ">
+                className="z-20  bg-amber-50 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 border-black border rounded">
                 <div onClick={props.close} className="hover:cursor-pointer text-white bg-red-500 w-5 p-1 rounded">X</div>
-                <div className="m-1"><input ref={() => fileName} defaultValue={""} onChange={(e) => handleOnChange(e)} /></div>
-                <div className="m-1 text-center">
-                    <button onClick={() => createFile(fileName.current)}> Create</button>
+                <div className="m-1"><input className="border p-1" ref={() => fileName} defaultValue={""} onChange={(e) => handleOnChange(e)} /></div>
+                <div className="flex justify-center">
+                    <div className="m-1 mb-5 text-center w-[50px] bg-lime-200 rounded border-lime-400 border">
+                        <button onClick={() => createFile(fileName.current)}> Create</button>
+                    </div>
                 </div>
             </div>
             <div className="z-10  bg-white fixed top-0 left-0 right-0 bottom-0 opacity-50" ></div>

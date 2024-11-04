@@ -18,15 +18,17 @@ function Interview() {
                         <div className='w-36 cursor-pointer
                 bg-amber-200 hover:bg-amber-400 
                     rounded border-amber-200 hover:border-amber-400 border-2 
-                    p-2 text-center'>
-                            <div onClick={() => setIsFinished(false)}>Restart Interview</div>
+                    p-2 text-center' onClick={() => setIsFinished(false)}>
+                            <div>Restart Interview</div>
                         </div>
-                        <div className='w-36 cursor-pointer
+                        <Link to={"/"}>
+                            <div className='w-36 cursor-pointer
                 bg-lime-200 hover:bg-lime-400 
                 rounded border-lime-200 hover:border-lime-400 border-2 
                 p-2 text-center'>
-                            <Link to={"/"}>Go to Top</Link>
-                        </div>
+                                Go to Top
+                            </div>
+                        </Link>
                     </div>
                 </>
                 :

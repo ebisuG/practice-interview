@@ -35,6 +35,15 @@ function Files(props: props) {
     return (<>
 
         <div>
+            <div>
+                <div className="flex justify-center" >
+                    <div className="h-[30px] m-5 pt-1 pl-1 pr-1 hover:cursor-pointer bg-lime-100 border-lime-400 border rounded hover:bg-lime-300" onClick={() => setIsModal(true)}>
+                        Create!
+                    </div>
+                </div>
+                <CreateFile {...{ open: isModal, close: () => setIsModal(false), setIsModal: setIsModal, setFiles }} />
+            </div>
+
             {files.map((elem, ind) => {
                 return (
                     <div key={ind} className="flex justify-center">
@@ -47,14 +56,6 @@ function Files(props: props) {
                     </div>
                 )
             })}
-            <div>
-                <div className="flex justify-center" >
-                    <div className="h-[30px] m-5 pt-1 pl-1 pr-1 hover:cursor-pointer bg-lime-100 border-lime-400 border rounded hover:bg-lime-300" onClick={() => setIsModal(true)}>
-                        Create!
-                    </div>
-                </div>
-                <CreateFile {...{ open: isModal, close: () => setIsModal(false), setIsModal: setIsModal, setFiles }} />
-            </div>
         </div>
     </>)
 

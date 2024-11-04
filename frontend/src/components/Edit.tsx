@@ -39,7 +39,8 @@ function Edit(props: props) {
 
             <div className="border-2 p-2 bg-amber-50 border-amber-50 w-[600px]">
                 <div className="m-2">
-                    Editing: "{props.filePath}"
+                    Editing: "{props.filePath}"<br/>
+                    Hint : use tab key to move fast
                 </div>
                 <div className="flex gap-2 justify-center">
                     <div className="cursor-pointer

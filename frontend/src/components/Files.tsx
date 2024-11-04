@@ -39,10 +39,10 @@ function Files(props: props) {
                 return (
                     <div key={ind}>
                         <div className="outline outline-1 outline-[#969696] rounded 
-                    mb-1 p-1 min-w-full hover:bg-slate-300 flex ">
-                            <div className="w-60">{elem.Name.split(".")[0]}<br /></div>
-                            <div className="hover:underline cursor-pointer w-10" onClick={() => { startEdit(elem.RelativePath) }}>Edit</div>
+                    mb-1 p-1 min-w-full bg-amber-50 hover:bg-amber-100 flex min-h-12">
+                            <div className="w-60 pt-3 pl-3">{elem.Name.split(".")[0]}</div>
                             <div className="hover:underline cursor-pointer w-20"><Link to={`interview?filePath=${elem.RelativePath}`}>Go to interview</Link></div>
+                            <div className="hover:underline cursor-pointer w-10" onClick={() => { startEdit(elem.RelativePath) }}>Edit</div>
                             <div className="hover:underline cursor-pointer w-12" onClick={()=>{deleteFile(elem.RelativePath)}}>Delete</div>
                         </div>
                     </div>

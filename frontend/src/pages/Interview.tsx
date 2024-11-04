@@ -11,7 +11,7 @@ function Interview() {
         <>
             {isFinished ?
                 <>
-                    <div className='mt-5 mb-2 text-center'>
+                    <div className='mt-32 mb-2 text-center'>
                         Finish!
                     </div>
                     <div className='flex justify-center gap-2'>

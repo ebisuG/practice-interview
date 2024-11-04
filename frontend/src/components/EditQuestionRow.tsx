@@ -3,7 +3,7 @@ import { main } from "wailsjs/go/models"
 
 interface props {
     stage: keyof main.Stages
-    questions:string[]
+    questions: string[]
     updateQuestion: (s: keyof main.Stages, q: string[]) => void
 }
 
@@ -15,7 +15,7 @@ function EditQuestionRow(props: props) {
         editingQuestions.current[ind].value = updated;
 
         //Update parent state
-        props.updateQuestion(props.stage, editingQuestions.current.map((elem) => elem.value))
+        props.updateQuestion(props.stage, editingQuestions?.current.map((elem) => elem?.value))
     }
 
     function AddNewQuestion() {
@@ -44,7 +44,7 @@ function EditQuestionRow(props: props) {
                                 defaultValue={elem}
                                 onChange={(e) => handleOnChange(e.target.value, ind)}
                             />
-                            <div tabIndex={0} className="m-1 ml-[350px] hover:cursor-pointer bg-red-200 w-[50px] text-center rounded" onClick={()=>DeleteQuestion(ind)}>Delete</div>
+                            <div tabIndex={0} className="m-1 ml-[350px] hover:cursor-pointer bg-red-200 w-[50px] text-center rounded" onClick={() => DeleteQuestion(ind)}>Delete</div>
                         </div>
                     )
                 })}

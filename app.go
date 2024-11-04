@@ -80,8 +80,15 @@ func (a *App) ReadQuestionFile(filePath string) Questions {
 	return questionSets
 }
 
-func (a *App) ReadAllfiles() []File {
-	root := os.DirFS("./data/")
+func (a *App) ReadAllfiles() ([]File, error) {
+	rootFilePath := "./data/"
+	if _, err := os.Stat(rootFilePath); errors.Is(err, os.ErrNotExist) {
+		err := os.Mkdir("data", 0777)
+		if err != nil {
+			return nil, errors.New("failed to create data directory")
+		}
+	}
+	root := os.DirFS(rootFilePath)
 	files, err := fs.Glob(root, "*.yaml")
 	if err != nil {
 		panic(err)
@@ -93,7 +100,7 @@ func (a *App) ReadAllfiles() []File {
 		fileData.RelativePath = "./data/" + file
 		result = append(result, fileData)
 	}
-	return result
+	return result, nil
 }
 
 func (a *App) WriteQuestionFile(data ...interface{}) {

@@ -25,9 +25,9 @@ function Files(props: props) {
         props.getEdittingFilePath(filePath)
     }
 
-    function deleteFile(filePath:string){
-        DeleteQuestionFile([filePath])
-        ReadAllfiles().then((result) => {
+    async function deleteFile(filePath:string){
+        await DeleteQuestionFile([filePath])
+        await ReadAllfiles().then((result) => {
             setFiles(result)
         })
     }

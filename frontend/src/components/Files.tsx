@@ -25,7 +25,7 @@ function Files(props: props) {
         props.getEdittingFilePath(filePath)
     }
 
-    async function deleteFile(filePath:string){
+    async function deleteFile(filePath: string) {
         await DeleteQuestionFile([filePath])
         await ReadAllfiles().then((result) => {
             setFiles(result)
@@ -37,20 +37,23 @@ function Files(props: props) {
         <div>
             {files.map((elem, ind) => {
                 return (
-                    <div key={ind}>
+                    <div key={ind} className="flex justify-center">
                         <div className="outline outline-1 outline-[#969696] rounded 
-                    mb-1 p-1 min-w-full bg-amber-50 hover:bg-amber-100 flex min-h-12">
-                            <div className="w-60 pt-3 pl-3">{elem.Name.split(".")[0]}</div>
-                            <div className="hover:underline cursor-pointer w-20"><Link to={`interview?filePath=${elem.RelativePath}`}>Go to interview</Link></div>
-                            <div className="hover:underline cursor-pointer w-10" onClick={() => { startEdit(elem.RelativePath) }}>Edit</div>
-                            <div className="hover:underline cursor-pointer w-12" onClick={()=>{deleteFile(elem.RelativePath)}}>Delete</div>
+                    mb-1 p-1 w-[400px] bg-amber-50 hover:bg-amber-100 flex min-h-12">
+                            <div className="hover:underline cursor-pointer w-[250px] text-lg pl-3 pt-3" onClick={() => { startEdit(elem.RelativePath) }}>{elem.Name.split(".")[0]}</div>
+                            <div className="hover:underline cursor-pointer w-[50px] pt-3 ml-5"><Link to={`interview?filePath=${elem.RelativePath}`}>Start</Link></div>
+                            <div className="hover:underline cursor-pointer w-[50px] text-sm pt-3 pl-1 pr-1 ml-5 border border-red-200 bg-red-100 hover:bg-red-400 rounded" onClick={() => { deleteFile(elem.RelativePath) }}>Delete</div>
                         </div>
                     </div>
                 )
             })}
             <div>
-                <div onClick={()=>setIsModal(true)}>Create</div>
-                <CreateFile {...{open:isModal, close:()=>setIsModal(false), setIsModal:setIsModal, setFiles}}/>
+                <div className="flex justify-center" >
+                    <div className="h-[30px] m-5 pt-1 pl-1 pr-1 hover:cursor-pointer bg-lime-100 border-lime-400 border rounded hover:bg-lime-300" onClick={() => setIsModal(true)}>
+                        Create!
+                    </div>
+                </div>
+                <CreateFile {...{ open: isModal, close: () => setIsModal(false), setIsModal: setIsModal, setFiles }} />
             </div>
         </div>
     </>)

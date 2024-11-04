@@ -10,18 +10,20 @@ function Interview() {
     return (
         <>
             {isFinished ?
-                <div className='flex justify-center mt-5 gap-2'>
-                    <div className='w-36 cursor-pointer
-                bg-orange-200 hover:bg-orange-400 
-                    rounded border-orange-200 hover:border-orange-400 border-2 
-                    p-2 text-center'>
-                        <div onClick={() => setIsFinished(false)}>Restart Interview</div>
-                    </div>
-                    <div className='w-36 cursor-pointer
+                <div className='mt-56'>
+                    <div className='flex justify-center gap-2'>
+                        <div className='w-36 cursor-pointer
+                bg-amber-200 hover:bg-amber-400 
+                rounded border-amber-200 hover:border-amber-400 border-2 
+                p-2 text-center'>
+                            <div onClick={() => setIsFinished(false)}>Restart</div>
+                        </div>
+                        <div className='w-36 cursor-pointer
                 bg-lime-200 hover:bg-lime-400 
-                    rounded border-lime-200 hover:border-lime-400 border-2 
-                    p-2 text-center'>
-                        <Link to={"/"}>Go to Top</Link>
+                rounded border-lime-200 hover:border-lime-400 border-2 
+                p-2 text-center'>
+                            <Link to={"/"}>Top page</Link>
+                        </div>
                     </div>
                 </div>
                 :

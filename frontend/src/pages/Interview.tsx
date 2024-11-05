@@ -32,7 +32,7 @@ function Interview() {
                     </div>
                 </>
                 :
-                <div className='flex justify-center mt-48'>
+                <div className='flex justify-center mt-40'>
                     <DisplayQuestion {...{ filePath: searchParams.get("filePath"), setIsFinished }} />
                 </div>
             }

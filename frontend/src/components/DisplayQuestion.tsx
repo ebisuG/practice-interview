@@ -54,9 +54,6 @@ function DisplayQuestion(props: props) {
     return (
         <div id="DisplayQuestion">
             <div className='flex items-center flex-col gap-2'>
-                <div className='min-h-7 max-w-[600px] border-2 rounded border-amber-50 bg-amber-50 p-2'>
-                    {interviewQuestion[interviewQuestionIndex]}
-                </div>
                 <div className='flex justify-center gap-2'>
                     <div className='w-14 text-center cursor-pointer
                 bg-amber-200 hover:bg-amber-400 
@@ -70,6 +67,9 @@ function DisplayQuestion(props: props) {
                             Top
                         </div>
                     </Link>
+                </div>
+                <div className='min-h-7 max-w-[600px] border-2 rounded border-amber-50 bg-amber-50 p-2 text-lg font-bold'>
+                    {interviewQuestion[interviewQuestionIndex]}
                 </div>
             </div>
         </div>

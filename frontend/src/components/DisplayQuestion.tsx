@@ -23,13 +23,13 @@ function DisplayQuestion(props: props) {
         }
     }, [])
 
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            setInterviewQuestionIndex(interviewQuestionIndex + 1)
-        }, 3 * 1000)
-        return () => clearInterval(intervalId)
+    // useEffect(() => {
+    //     const intervalId = setInterval(() => {
+    //         setInterviewQuestionIndex(interviewQuestionIndex + 1)
+    //     }, 3 * 1000)
+    //     return () => clearInterval(intervalId)
 
-    }, [interviewQuestion, interviewQuestionIndex])
+    // }, [interviewQuestion, interviewQuestionIndex])
 
     useEffect(() => {
         if (interviewQuestionIndex == interviewQuestion.length && interviewQuestionIndex != 0) {

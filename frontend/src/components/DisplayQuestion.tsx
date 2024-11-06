@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { main } from "../../wailsjs/go/models"
 import { ReadQuestionFile } from '../../wailsjs/go/main/App';
+import { Link } from 'react-router-dom';
 
 interface props {
     filePath: string | null
@@ -23,13 +24,13 @@ function DisplayQuestion(props: props) {
         }
     }, [])
 
-    useEffect(() => {
-        const intervalId = setInterval(() => {
-            setInterviewQuestionIndex(interviewQuestionIndex + 1)
-        }, 3 * 1000)
-        return () => clearInterval(intervalId)
+    // useEffect(() => {
+    //     const intervalId = setInterval(() => {
+    //         setInterviewQuestionIndex(interviewQuestionIndex + 1)
+    //     }, 3 * 1000)
+    //     return () => clearInterval(intervalId)
 
-    }, [interviewQuestion, interviewQuestionIndex])
+    // }, [interviewQuestion, interviewQuestionIndex])
 
     useEffect(() => {
         if (interviewQuestionIndex == interviewQuestion.length && interviewQuestionIndex != 0) {
@@ -53,13 +54,22 @@ function DisplayQuestion(props: props) {
     return (
         <div id="DisplayQuestion">
             <div className='flex items-center flex-col gap-2'>
-                <div className='min-h-7 max-w-[600px] border-2 rounded border-amber-50 bg-amber-50 p-2'>
-                    {interviewQuestion[interviewQuestionIndex]}
-                </div>
-                <div className='w-14 text-center cursor-pointer
+                <div className='flex justify-center gap-2'>
+                    <div className='w-14 text-center cursor-pointer
                 bg-amber-200 hover:bg-amber-400 
-                    rounded border-amber-200 hover:border-amber-400 border-2 p-2' onClick={goNextQuestion}>
-                    Next
+                rounded border-amber-200 hover:border-amber-400 border-2 p-2' onClick={goNextQuestion}>
+                        Next
+                    </div>
+                    <Link to={"/"}>
+                        <div className='w-14 text-center cursor-pointer
+                bg-lime-200 hover:bg-lime-400 
+                rounded border-lime-200 hover:border-lime-400 border-2 p-2'>
+                            Top
+                        </div>
+                    </Link>
+                </div>
+                <div className='min-h-7 max-w-[600px] border-2 rounded border-amber-50 bg-amber-50 p-2 text-lg font-bold'>
+                    {interviewQuestion[interviewQuestionIndex]}
                 </div>
             </div>
         </div>
